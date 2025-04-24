@@ -19,12 +19,13 @@ export const theme = createTheme({
   components: {
     MuiButton: {
       defaultProps: {
-        variant: "outlined"
+        variant: "contained",
+        fullWidth: true,
       },
       styleOverrides: {
         root: {
           textTransform: "none",
-          fontWeight: 700
+          fontWeight: 700,
         }
       }
     },

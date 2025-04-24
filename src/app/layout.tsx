@@ -26,13 +26,14 @@ export default async function RootLayout({
   Private: ReactNode;
   Public: ReactNode;
 }>) {
+  "use server"
   const cookieStorage = await cookies();
-  const cookie = cookieStorage.get("go-barber-cookie")?.value;
+  const token = cookieStorage.has("go-barber-token");
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Provider>{!!cookie ? Private : Public}</Provider>
+        <Provider>{!!token ? Private : Public}</Provider>
       </body>
     </html>
   );

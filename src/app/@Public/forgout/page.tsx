@@ -1,5 +1,4 @@
 "use client";
-import { FormPassword } from "@/src/components/forms/FormPassword";
 import { FormTextField } from "@/src/components/forms/FormTextField";
 import { useStorage } from "@/src/hooks/useStorage";
 import { Stack, Paper, Grid, Typography, Button } from "@mui/material";
@@ -7,19 +6,16 @@ import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-export default function Signup() {
+export default function Forgout() {
   const { control, formState, handleSubmit } = useForm<any>();
-  const { signUp } = useStorage();
+  const { forgout } = useStorage();
   const router = useRouter();
 
   const handleSignup: SubmitHandler<{
     email: string;
-    password: string;
-    "confirm-password": string;
-  }> = async (value) => {
+  }> = async ({ email }) => {
     try {
-      await signUp(value);
-      await router.refresh();
+      await forgout(email);
     } catch (error: any) {
       enqueueSnackbar(error.response?.data?.message, { variant: "error" });
     }
@@ -43,20 +39,10 @@ export default function Signup() {
           onSubmit={handleSubmit(handleSignup)}
         >
           <Grid size={12} display="flex" justifyContent="center">
-            <Typography>Signup</Typography>
+            <Typography>Forgout</Typography>
           </Grid>
           <Grid size={12}>
             <FormTextField control={control} name="email" label="Email" />
-          </Grid>
-          <Grid size={12}>
-            <FormPassword control={control} name="password" label="Senha" />
-          </Grid>
-          <Grid size={12}>
-            <FormPassword
-              control={control}
-              name="confirm-password"
-              label="Confirma senha"
-            />
           </Grid>
           <Grid size={6}>
             <Button type="button" onClick={() => router.push("/")}>
@@ -65,7 +51,7 @@ export default function Signup() {
           </Grid>
           <Grid size={6}>
             <Button loading={formState.isSubmitting} type="submit">
-              Signup
+              Send email
             </Button>
           </Grid>
         </Grid>

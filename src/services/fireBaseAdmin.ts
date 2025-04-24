@@ -8,8 +8,8 @@ if (!admin.apps?.length) {
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
       privateKey: process.env.FIREBASE_PRIVATE_KEY,
     }),
-    databaseURL: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.farebaseio.com`,
-    storageBucket: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.appspot.com`,
+    databaseURL: process.env.FIREBASE_DATA_BASE_URL,
+    //storageBucket: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.appspot.com`,
   });
   admin.firestore().settings({
     ignoreUndefinedProperties: true
